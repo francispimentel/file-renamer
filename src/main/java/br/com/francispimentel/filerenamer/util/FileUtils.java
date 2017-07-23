@@ -6,7 +6,7 @@ public class FileUtils {
 
 	public static final File TEMP_DIRECTORY = new File("temp");
 
-	public static void purgeDirectory(File dir) {
+	public static boolean purgeDirectory(File dir) {
 		File files[] = dir.listFiles();
 		if (files != null) {
 			for (File f : files) {
@@ -17,7 +17,7 @@ public class FileUtils {
 				}
 			}
 		}
-		dir.delete();
+		return dir.delete();
 	}
 
 	public static File findFileInFolder(String fileName, File parentFolder, String... fileExtensions) {

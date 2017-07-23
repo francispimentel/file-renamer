@@ -14,7 +14,10 @@ public class PurgeController {
 	@GetMapping
 	@ResponseBody
 	public String purgeTempDirectory() {
-		FileUtils.purgeDirectory(FileUtils.TEMP_DIRECTORY);
-		return "OK";
+		if (!FileUtils.TEMP_DIRECTORY.exists()) {
+			return "Temp folder is already purged!";
+		}
+		boolean success = FileUtils.purgeDirectory(FileUtils.TEMP_DIRECTORY);
+		return success ? "Temp folder purged succesfully!" : "Could not purge temp folder!";
 	}
 }
