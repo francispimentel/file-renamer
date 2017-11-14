@@ -25,6 +25,11 @@ public class FileUtils {
 		if (f.exists()) {
 			return f;
 		}
+		
+		f = new File(parentFolder, fileName + " ");
+		if (f.exists()) {
+			return f;
+		}
 
 		if (fileExtensions != null) {
 			for (String extension : fileExtensions) {
@@ -35,6 +40,16 @@ public class FileUtils {
 				}
 
 				f = new File(parentFolder, fileName + "." + extension.toUpperCase());
+				if (f.exists()) {
+					return f;
+				}
+				
+				f = new File(parentFolder, fileName + " ." + extension.toLowerCase());
+				if (f.exists()) {
+					return f;
+				}
+
+				f = new File(parentFolder, fileName + " ." + extension.toUpperCase());
 				if (f.exists()) {
 					return f;
 				}
